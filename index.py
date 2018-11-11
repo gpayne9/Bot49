@@ -42,7 +42,7 @@ def results():
 	data = request.get_json(silent=True) # get data in json form 
 	building = data['queryResult']['parameters']['Buildings']
 	building = building + " UNCC"
-	key = os.getenv('GOOGLE_MAPS_API_KEY') # key is good
+	key = os.getenv('GOOGLE_MAPS_API_KEY') # key is good		
 
 	bi = building_image.get_building_image(key, building, search_url, photos_url)
 
