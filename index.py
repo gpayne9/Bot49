@@ -38,14 +38,16 @@ def send_message():
 
 # function 
 @app.route("/bot_49", methods=['POST'])
-def results():
+def results():#detect intent
 	data = request.get_json(silent=True) # get data in json form 
+	print(data)
 	building = data['queryResult']['parameters']['Buildings']
 	building = building + " UNCC"
 	key = os.getenv('GOOGLE_MAPS_API_KEY') # key is good		
-
+	#if(data['intent'] == picture)	
 	bi = building_image.get_building_image(key, building, search_url, photos_url)
-
+	#else if (data['intent'] == directions)
+	#
 	return bi
 
 # run Flask app
