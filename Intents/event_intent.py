@@ -18,5 +18,6 @@ def get_events(data):
 	
 
 	#format response
+	return 1
 
 	

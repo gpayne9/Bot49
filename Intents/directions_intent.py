@@ -5,12 +5,12 @@ import imghdr
 
 from flask import Flask, request, jsonify, render_template, send_from_directory
 app = Flask(__name__)
-
+location_url = 'https://www.google.com/maps/dir/?api=1&destination='
 photos_url = "https://maps.googleapis.com/maps/api/place/photo"
 search_url = "https://maps.googleapis.com/maps/api/place/textsearch/json"
-#data
+#Guy and Lauren
 # @app.route("/get_picture", methods=['POST'])
-def get_building_image(data):
+def get_directions(data,os):
 	key = os.getenv('GOOGLE_MAPS_API_KEY') # key is good
 
 	#parse payload(data)
@@ -18,28 +18,21 @@ def get_building_image(data):
 	building = building + " UNCC"
 
 	#google stuff(key, building)
-	
+
 	search_payload = {"key":key, "query":building}
 	search_req = requests.get(search_url, params=search_payload)
 	search_json = search_req.json()
-	print(search_json) # Gives me the entire payload for a building at UNCC
-
-	#get photo(search_json)
-	photo_id = search_json["results"]
-	photo_id = search_json["results"][0]["photos"][0]["photo_reference"]
-	photo_payload = {"key" : key, "maxwidth" : 500, "maxwidth" : 500, "photoreference" : photo_id}
-	photo_request = requests.get(photos_url, params=photo_payload)
-	print(photo_payload)
-	print(photo_request)
-	photo_type = imghdr.what("", photo_request.content)
-	photo_name = "static/" + building + "." + photo_type
-
-
-	with open(photo_name, "wb") as photo:
-		photo.write(photo_request.content)
-
-	print(photo_name)
-	return send_from_directory('.', photo_name)
-	# return '<img src='+ photo_name + '>'
+	print(search_json)
+	address = search_json["results"][0]['formatted_address']
+	print(address)
+	building = json.dumps(building)
+	address = json.dumps(address)
+	address = building + "+" + address #https://www.google.com/maps/dir/?api=1&destination=Denny+Hall+UNCC9125+Mary+Alexander+Rd,+Charlotte,+NC+28262,+USA
+	address = address.replace(" ", "+")
+	address = address.replace('"',"")
+	
+	address = location_url + address
+	print(address)
+	return address
 
 	
