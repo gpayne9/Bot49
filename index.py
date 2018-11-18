@@ -23,7 +23,7 @@ def detect_intent_texts(project_id, session_id, text, language_code):
 		text_input = dialogflow.types.TextInput(text=text, language_code=language_code)
 		query_input = dialogflow.types.QueryInput(text=text_input)
 		response = session_client.detect_intent(session=session, query_input=query_input)
-
+		print(response)
 		# Send a JSON object that holds the message from Dialog-Flow and intent name 
 		message = {"message": response.query_result.fulfillment_text, "intent": response.query_result.intent.display_name}
 													
@@ -36,7 +36,7 @@ def send_message():
 	fulfillment_text = detect_intent_texts(project_id, "unique", message, 'en')
 	#response_text = { "message":  fulfillment_text }
 	# print(fulfillment_text)	# Print response text
-	return jsonify(fulfillment_text)
+	return jsonify(fulfillment_text) 
 
 # function 
 @app.route("/bot_49", methods=['POST'])
@@ -53,7 +53,11 @@ def results():#detect intent
 	elif(intent == 'Directions'):
 		response = get_directions(data,os)
 	print(response)
-	return response
+	
+	reply = {
+		"fulfillmentText": response,
+	}
+	return jsonify(reply)
 
 # run Flask app 
 if __name__ == "__main__":

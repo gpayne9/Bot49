@@ -1,26 +1,131 @@
-<!-- /templates/index.html -->
-
-<!doctype html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
+ <!doctype html>
+    <html lang="en">
+      <head>
+          <!-- Required meta tags -->
         <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <!-- Bootstrap CSS -->
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-                        <title>Bot49</title>
-                        <b><h1><div style="text-align: center;">Hello! My name is Bot49. </div></h1></b>
-<p style="text-align: center">I’m an interactive resource to help you navigate around the UNC Charlotte campus,
-    connect you to resources, and simply have a wonderful conversation with you.
-    My message to you will be displayed on the right in a white box, while your messages to me
-    will be on the right in a blue box. To interact with me, simply type in the message box below
-    and let’s get started. For example, “How are you doing?” </p>
-<br>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Bot 49</title>
 
-                        </head>
-    <body>
-        <div class="container h-100">
+          <style>
+			body,html {
+				height: 100%;
+				background-color: white;
+			}
+              body {
+                  background-color: white;
+              }
+
+              h1 {
+                  color: black;
+                  text-align: center;
+              }
+
+              p {
+                  font-family: Veranda;
+                  font-size: 25px;
+              }
+			  
+			  /* /static/style.css */
+
+.chat-container {
+    margin: 0px;
+	padding: px;
+
+}
+
+.chat-message {
+    padding: 6px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+}
+
+.bot-message {
+    background: #0084ff;
+    color: white;
+}
+
+.human-message {
+    background: #d3d3d3;
+    color: black;
+    margin: 13px 1px;
+}
+.input {
+    width: 100%;
+    margin: 70px 0px;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.text-block {
+    position: auto;
+    bottom: 20px;
+    right: 20px;
+    background-color: #046A38;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#department_navigation{
+  background-color:#046A38;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #046A38;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #B9975B;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+
+<div class="topnav">
+<a href="https://www.uncc.edu/landing/about-us">About Us</a>
+<a href="https://graduateschool.uncc.edu/">The Graduate School</a>
+<a href="https://honorscollege.uncc.edu/">Honors College</a>
+<a href="https://continuinged.uncc.edu/">Continuing Education</a>
+<a href="https://news.uncc.edu/">News</a>
+<a href="https://www.youvisit.com/tour/unccharlotte?pl=v">Take a Virtual Tour</a>
+</div>
+
+ <b><h1><div style="text-align: center;">Hello! My name is Bot49. </div></h1></b>
+          <br>
+		  <div class="center">
+          <p style="text-align: center">I’m an interactive resource to help you navigate around the UNC Charlotte campus,
+              connect you to resources, and simply have a wonderful conversation with you. My message to you will be
+              displayed on the right in a white box, while your messages to me will be on the right in a blue box.
+              <br>To interact with me, simply type in the message box below and let’s get started.
+              <br>For example, “How are you doing?” </p>
+		   
+          <br>
+          <h3 style="text-align: center">Start typing your questions below to get started! </h3>
+          <div>
+      </head>
+      <body>
+          <div class="container h-100">
             <div class="row align-items-center h-100">
                 <div class="col-md-8 col-sm-12 mx-auto">
                     <div class="h-100 justify-content-center">
@@ -28,17 +133,26 @@
                             <!-- chat messages -->
                         </div>
                         <form id="target">
-                            <input class="input" type="text" value="" placeholder="Enter message..." id="input_message"/>
-                            <input type="submit" hidden>
-                                </form>
+                           <input class="input" type="text" value="" placeholder="Enter message..." id="input_message"/>
+                           <input type="submit" hidden>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+  <div class="text-block">
+      <p>The University of North Carolina at Charlotte <br>9201 University City Blvd,<br> Charlotte NC 28223-0001<br>
+       704-687-8622
+       </p>
+  </div>
+
+		
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
         <script src="{{ url_for('static', filename='custom.js')}}"></script>
-    </body>
-</html>
-
+      </body>
+    </html>
